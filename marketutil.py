@@ -73,36 +73,33 @@ def marketIsOpen(ticker):
 		print "Ticker "+ ticker+ " not recognized"
 		return False
 
+# function to get the local time for an index to store in the database
 def getLocalTime(ticker):
 	# shanghai 
 	if '000001' in ticker:
-		now=datetime.now(timezone('Asia/Shanghai'))
-		return now
+		return datetime.now(timezone('Asia/Shanghai'))
 	
 	# new york 
 	elif 'GSPC' in ticker:
-		now=datetime.now(timezone('America/New_York'))
-		return now
+		return datetime.now(timezone('America/New_York'))
 
 	# london
 	elif 'FTSE' in ticker:
-		now=datetime.now(timezone('GB'))
-		return now
+		return datetime.now(timezone('GB'))
 
 	# frankfurt
 	elif 'DAXI' in ticker:
-		now=datetime.now(timezone('CET'))
-		return now
+		return datetime.now(timezone('CET'))
 
 	# tokyo
 	elif '225' in ticker:
-		now=datetime.now(timezone('Asia/Tokyo'))
-		return now
+		return datetime.now(timezone('Asia/Tokyo'))
 
 	else:
 		print "Ticker "+ ticker+ " not recognized"
 		return False
 
+# function that returns a nicer text representation of the index
 def getCleanTicker(ticker):
 	# shanghai 
 	if '000001' in ticker:
