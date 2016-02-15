@@ -16,5 +16,5 @@ The code incorporates a beautiful soup/python scraper which fetches index prices
 - Currently only the index price scraper works, no analysis is performed and there is no interface to speak of
 - The data is scraped at times when the markets should be open on weekdays (holidays are not yet handled and will result in recording some static data on those days)
 - The stock values are recorded in local time, so that later it will be easier to pull out 'days' of data
-- Python lib requirements are minimal, the only non-standard (default) libraries I can think of is <a href="https://pypi.python.org/pypi/MySQL-python">MySQLdb</a> and <a href="http://www.crummy.com/software/BeautifulSoup/">Beautiful Soup</a>
-- The code will die horribly unless there's a mysql database called 'benfordindex' with the username 'benford' and the password 'index' (you can change these in database.py
+- Python lib requirements are minimal, the only non-standard (default) libraries are <a href="https://pypi.python.org/pypi/MySQL-python">MySQLdb</a> and <a href="http://www.crummy.com/software/BeautifulSoup/">Beautiful Soup</a>
+- The code will die horribly unless there's a mysql database called 'benfordindex' with the username 'benford' and the password 'index' (you can change these in database.py)
