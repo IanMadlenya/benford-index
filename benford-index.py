@@ -2,9 +2,10 @@ from bs4 import BeautifulSoup
 import parsers as parser
 import database as database
 import requests
-import time
+from datetime import datetime
+from pytz import timezone
 import MySQLdb
-from dateutil import tz
+
 
 # setup the database
 db = MySQLdb.connect(host="localhost", 
@@ -27,14 +28,25 @@ def getYahooIndexPrice(ticker,spanID):
 # https://en.wikipedia.org/wiki/List_of_stock_exchange_opening_times
 def marketIsOpen(ticker):
 	#shanghai 09:15 to 15:00 
+
 	if (ticker='000001.ss'):
 
 	#new york 09:30 to 16:00 EST
 	elif (ticker='%5EGSPC'):
+		now=datetime.now(timezone('America/New_York'))
+		open=now.replace(hour=9,minute=30)
+		close=now.replace(hour=16,minute=00)
+		if (now > open and now < close and now.isoweekday()):
+			return True
 
 	#london
+	# 08:30 to 16:30
 	elif (ticker='%5EFTSE'):
-
+		now=datetime.now(timezone('GB'))
+		open=now.replace(hour=8,minute=0)
+		close=now.replace(hour=16,minute=30)
+		if (now > open and now < close and now.isoweekday()):
+			return True
 
 	#frankfurt
 	elif (ticker='^ftse'):
