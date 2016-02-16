@@ -13,20 +13,21 @@ def getYahooIndexPrice(ticker,spanID):
 
 # function that works out if the market is open and stores the data if it is
 # https://en.wikipedia.org/wiki/List_of_stock_exchange_opening_times
+# delays: http://finance.yahoo.com/exchanges
 def marketIsOpen(ticker):
 	# shanghai 
-	# 09:15 to 15:00 
+	# 09:15 to 15:00 PLUS Yahoo! 30 minute delay
 	if '000001' in ticker:
 		now=datetime.now(timezone('Asia/Shanghai'))
-		open=now.replace(hour=9,minute=15)
-		close=now.replace(hour=15,minute=00)
+		open=now.replace(hour=9,minute=45)
+		close=now.replace(hour=15,minute=30)
 		if (now > open and now < close and now.isoweekday()):
 			return True
 		else:
 			return False
 	
 	# new york 
-	# 09:30 to 16:00 EST
+	# 09:30 to 16:00 EST with zero delay
 	elif 'GSPC' in ticker:
 		now=datetime.now(timezone('America/New_York'))
 		open=now.replace(hour=9,minute=30)
@@ -37,33 +38,33 @@ def marketIsOpen(ticker):
 			return False
 
 	# london
-	# 08:30 to 16:30
+	# 08:30 to 16:30 PLUS Yahoo 15 minute delay
 	elif 'FTSE' in ticker:
 		now=datetime.now(timezone('GB'))
-		open=now.replace(hour=8,minute=0)
-		close=now.replace(hour=16,minute=30)
+		open=now.replace(hour=8,minute=15)
+		close=now.replace(hour=16,minute=45)
 		if (now > open and now < close and now.isoweekday()):
 			return True
 		else:
 			return False
 
 	# frankfurt
-	# 09:00 to 17:45
+	# 09:00 to 17:45 PLUS Yahoo 15 minute delay
 	elif 'DAXI' in ticker:
 		now=datetime.now(timezone('CET'))
-		open=now.replace(hour=9,minute=0)
-		close=now.replace(hour=17,minute=45)
+		open=now.replace(hour=9,minute=15)
+		close=now.replace(hour=18,minute=00)
 		if (now > open and now < close and now.isoweekday()):
 			return True
 		else:
 			return False
 
 	# tokyo
-	# 09:00 to 15:00
+	# 09:00 to 15:00 PLUS yahoo 30 minute delay
 	elif '225' in ticker:
 		now=datetime.now(timezone('Asia/Tokyo'))
-		open=now.replace(hour=9,minute=0)
-		close=now.replace(hour=15,minute=00)
+		open=now.replace(hour=9,minute=30)
+		close=now.replace(hour=15,minute=30)
 		if (now > open and now < close and now.isoweekday()):
 			return True
 		else:
