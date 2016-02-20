@@ -12,7 +12,10 @@ tickerList={'000001.ss':'000001.ss','%5EGSPC':'^gspc','%5EFTSE':'^ftse','%5EGDAX
 while True:
 	for ticker,span in tickerList.items():
 		if (util.marketIsOpen(ticker)):
-			price=util.getYahooIndexPrice(ticker,span)
-			#print(ticker,price)
-			database.storeIndexPrice(price,ticker)
+			try:
+				price=util.getYahooIndexPrice(ticker,span)
+				#print(ticker,price)
+				database.storeIndexPrice(price,ticker)
+			except:
+				pass
  	time.sleep(60)
