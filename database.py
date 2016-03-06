@@ -19,10 +19,6 @@ def storeIndexPrice(price,ticker):
 	db.commit()
 	return True
 
-# generic database retrieval function
-def retrievefromDatabase():
-	return True
-
 def getIndexDailyData(ticker,sy,sm,sd,ey,em,ed):
 	cur=db.cursor()
 	startDate=dt.date(sy,sm,sd)

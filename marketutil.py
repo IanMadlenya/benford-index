@@ -125,3 +125,4 @@ def getCleanTicker(ticker):
 	else:
 		print "Ticker "+ ticker+ " not recognized"
 		return False
+
